@@ -1,0 +1,33 @@
+{
+	"manifest_version": 2,
+
+	"name": "Cher It!",
+	"description": "Don't share with others, Cher it!",
+	"version": "0.0.1",
+	"default_locale": "en",
+	"content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",
+	"offline_enabled": true,
+	"icons": { 
+		"16": "/assets/images/icons/16.png",
+		"48": "/assets/images/icons/48.png",
+	   "128": "/assets/images/icons/128.png"
+	},
+	"web_accessible_resources": [
+		"/assets/media/do-you-believe-in-love.wav",
+		"/assets/images/confetti.gif"
+	],
+	"permissions": [
+		"tabs",
+		"http://localhost/*"
+	  ],
+	"content_scripts": 
+	[
+		{
+			"matches": ["*://*/*"],
+			"js": ["/assets/js/content_script.js"],
+			"css": ["/assets/css/cher-style.css"],
+			"run_at": "document_end"
+		}
+	]
+}
+

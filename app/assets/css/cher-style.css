@@ -1,0 +1,20 @@
+.cher-overlay.active {
+    display: block !important;
+}
+
+.cher-overlay {
+    height: 100vh;
+    width: 100vw;
+    display: none;
+    background-image: url('chrome-extension://londmchkmgibepdhagodohbjailijcbp/assets/images/confetti.gif');
+    background-position: top;
+    background-repeat: repeat-x;
+    background-size: auto;
+	position: fixed;
+	z-index: 2147483647;
+	top: 0;
+	left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+};
