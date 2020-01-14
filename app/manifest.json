@@ -3,7 +3,7 @@
 
 	"name": "Cher It!",
 	"description": "Don't share with others, Cher it!",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"default_locale": "en",
 	"content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",
 	"offline_enabled": true,

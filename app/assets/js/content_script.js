@@ -33,6 +33,32 @@ function walk(node)
 	}
 }
 
+function walk(node,arr,parentNode,ctr)
+{
+        // I stole this function from here: http://is.gd/mwZp7E
+        var child, next
+        if( ctr == undefined ) ctr = 0
+        switch ( node.nodeType )
+        {
+            case 1:  // Element
+            case 9:  // Document
+            case 11: // Document fragment
+                child = node.firstChild
+                while ( child )
+                {
+                    ctr = ctr + 1
+                    walk(child,arr,node,ctr)
+                    child = child.nextSibling
+                }
+                break
+            case 3: // Text node
+                if(node.parentElement.tagName.toLowerCase() != "script") {
+                    handleText(node,arr,parentNode, ctr);
+                }
+                break
+        }
+}
+
 function handleText(textNode) 
 {
 	var targetText = textNode.nodeValue;
