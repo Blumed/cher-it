@@ -1,7 +1,6 @@
 walk(document.body);
 audioElement();
 confettiElement();
-//overlayElement();
 
 function walk(node) 
 {
@@ -82,13 +81,6 @@ function audioElement(path)
 	document.body.appendChild(audioElement);
 }
 
-function overlayElement()
-{
-	var overlayElement = document.createElement('div');
-	overlayElement.setAttribute('class', 'cher-overlay');
-	document.body.appendChild(overlayElement);
-}
-
 function confettiElement()
 {
 	var confettiElement = document.createElement('div');
@@ -103,29 +95,15 @@ confetti.forEach(function(el) {
 });
 }
 
-// function confetti()
-// {
-// var confetti = [...Array(300).keys()];
-// confetti.forEach(function(el) {
-//     var div = document.createElement("div");
-//     div.className = "confetti-" + el;
-//     document.querySelector('.cher-confetti').appendChild(div);
-// });
-// }
-
-
 document.body.addEventListener('click', function(e) {
 	var trigger = e.target.innerText;
-	//var toggleOverlay = document.querySelector('.cher-overlay');
 	var toggleConfetti = document.querySelector('.cher-confetti');
 	if(trigger) {
 		if(trigger.includes('cher',) || trigger.includes('Cher',)) {
 			trigger = true;
 			document.getElementById('cher').play();
-			//toggleOverlay.classList.toggle('active');
 			toggleConfetti.classList.toggle('active');
 			setTimeout(function(){ 
-				//toggleOverlay.classList.toggle('active');
 				toggleConfetti.classList.toggle('active');
 			}, 5000);
 		}else{
