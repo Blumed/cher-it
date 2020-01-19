@@ -3,7 +3,7 @@
 
 	"name": "Cher It!",
 	"description": "Don't share with others, Cher it!",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"default_locale": "en",
 	"content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",
 	"offline_enabled": true,
@@ -25,7 +25,10 @@
 		{
 			"matches": ["*://*/*"],
 			"js": ["/assets/js/content_script.js"],
-			"css": ["/assets/css/cher-style.css"],
+			"css": [
+				"/assets/css/cher-style.css",
+				"/assets/css/cher-confetti.css"
+			],
 			"run_at": "document_end"
 		}
 	]

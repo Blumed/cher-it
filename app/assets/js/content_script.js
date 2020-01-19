@@ -1,6 +1,7 @@
 walk(document.body);
 audioElement();
-overlayElement();
+confettiElement();
+//overlayElement();
 
 function walk(node) 
 {
@@ -88,15 +89,45 @@ function overlayElement()
 	document.body.appendChild(overlayElement);
 }
 
+function confettiElement()
+{
+	var confettiElement = document.createElement('div');
+	confettiElement.setAttribute('class', 'cher-confetti');
+	document.body.appendChild(confettiElement);
+
+	var confetti = [...Array(500).keys()];
+confetti.forEach(function(el) {
+    var div = document.createElement("div");
+    div.className = "confetti-" + el;
+    document.querySelector('.cher-confetti').appendChild(div);
+});
+}
+
+// function confetti()
+// {
+// var confetti = [...Array(300).keys()];
+// confetti.forEach(function(el) {
+//     var div = document.createElement("div");
+//     div.className = "confetti-" + el;
+//     document.querySelector('.cher-confetti').appendChild(div);
+// });
+// }
+
+
 document.body.addEventListener('click', function(e) {
 	var trigger = e.target.innerText;
-	var toggleOverlay = document.querySelector('.cher-overlay');
+	//var toggleOverlay = document.querySelector('.cher-overlay');
+	var toggleConfetti = document.querySelector('.cher-confetti');
 	if(trigger) {
 		if(trigger.includes('cher',) || trigger.includes('Cher',)) {
 			trigger = true;
 			document.getElementById('cher').play();
-			toggleOverlay.classList.toggle('active');
-			setTimeout(function(){ toggleOverlay.classList.toggle('active'); }, 5000);
+			//toggleOverlay.classList.toggle('active');
+			toggleConfetti.classList.toggle('active');
+			setTimeout(function(){ 
+				//toggleOverlay.classList.toggle('active');
+				toggleConfetti.classList.toggle('active');
+			}, 5000);
 		}else{
 			trigger = false;
 		};
