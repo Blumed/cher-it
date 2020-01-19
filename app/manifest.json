@@ -13,8 +13,7 @@
 	   "128": "/assets/images/icons/128.png"
 	},
 	"web_accessible_resources": [
-		"/assets/media/do-you-believe-in-love.wav",
-		"/assets/images/confetti.gif"
+		"/assets/media/do-you-believe-in-love.wav"
 	],
 	"permissions": [
 		"activeTab",
@@ -26,7 +25,6 @@
 			"matches": ["*://*/*"],
 			"js": ["/assets/js/content_script.js"],
 			"css": [
-				"/assets/css/cher-style.css",
 				"/assets/css/cher-confetti.css"
 			],
 			"run_at": "document_end"
