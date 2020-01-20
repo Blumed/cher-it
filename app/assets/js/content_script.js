@@ -1,13 +1,13 @@
 walk(document.body);
-audioElement();
-confettiElement();
+createAudioElement();
+createConfettiContainerElement();
 
 function walk(node) 
 {
 	// I stole this function from here:
 	// http://is.gd/mwZp7E
 	
-	var child, next;
+	let child, next;
 
 	switch ( node.nodeType )  
 	{
@@ -36,7 +36,7 @@ function walk(node)
 function walk(node,arr,parentNode,ctr)
 {
         // I stole this function from here: http://is.gd/mwZp7E
-        var child, next
+        let child, next
         if( ctr == undefined ) ctr = 0
         switch ( node.nodeType )
         {
@@ -61,19 +61,17 @@ function walk(node,arr,parentNode,ctr)
 
 function handleText(textNode) 
 {
-	var targetText = textNode.nodeValue;
+	let targetText = textNode.nodeValue;
 
 	targetText = targetText.replace(/Share/gi, "Cher");
 	targetText = targetText.replace(/share/gi, "cher");
-	// v = v.replace(/Sharing/gi, "Chering");
-	// v = v.replace(/sharing/gi, "chering");
-	
+
 	textNode.nodeValue = targetText;
 }
 
-function audioElement(path) 
+function createAudioElement(path) 
 {
-	var audioElement = document.createElement('audio');
+	const audioElement = document.createElement('audio');
 	path = chrome.runtime.getURL('/assets/media/do-you-believe-in-love.wav');
 	audioElement.setAttribute('src', path);
 	audioElement.setAttribute('type', 'audio/wav');
@@ -81,23 +79,28 @@ function audioElement(path)
 	document.body.appendChild(audioElement);
 }
 
-function confettiElement()
+function createConfettiContainerElement()
 {
-	var confettiElement = document.createElement('div');
+	const confettiElement = document.createElement('div');
 	confettiElement.setAttribute('class', 'cher-confetti');
 	document.body.appendChild(confettiElement);
 
-	var confetti = [...Array(500).keys()];
-confetti.forEach(function(el) {
-    var div = document.createElement("div");
-    div.className = "confetti-" + el;
-    document.querySelector('.cher-confetti').appendChild(div);
-});
+	createConfettiElements();
+
+}
+
+function createConfettiElements() {
+	const confetti = [...Array(500).keys()];
+	return confetti.forEach(function(el) {
+    	let div = document.createElement("div");
+    	div.className = "confetti-" + el;
+    	document.querySelector('.cher-confetti').appendChild(div);
+	});
 }
 
 document.body.addEventListener('click', function(e) {
-	var trigger = e.target.innerText;
-	var toggleConfetti = document.querySelector('.cher-confetti');
+	let trigger = e.target.innerText;
+	const toggleConfetti = document.querySelector('.cher-confetti');
 	if(trigger) {
 		if(trigger.includes('cher',) || trigger.includes('Cher',)) {
 			trigger = true;
@@ -105,7 +108,7 @@ document.body.addEventListener('click', function(e) {
 			toggleConfetti.classList.toggle('active');
 			setTimeout(function(){ 
 				toggleConfetti.classList.toggle('active');
-			}, 5000);
+			}, 4900);
 		}else{
 			trigger = false;
 		};
