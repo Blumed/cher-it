@@ -2,8 +2,7 @@ walk(document.body);
 createAudioElement();
 createConfettiContainerElement();
 
-function walk(node) 
-{
+function walk(node) {
 	// I stole this function from here:
 	// http://is.gd/mwZp7E
 	
@@ -33,8 +32,7 @@ function walk(node)
 	}
 }
 
-function walk(node,arr,parentNode,ctr)
-{
+function walk(node,arr,parentNode,ctr) {
         // I stole this function from here: http://is.gd/mwZp7E
         let child, next
         if( ctr == undefined ) ctr = 0
@@ -59,8 +57,8 @@ function walk(node,arr,parentNode,ctr)
         }
 }
 
-function handleText(textNode) 
-{
+function handleText(textNode) {
+
 	let targetText = textNode.nodeValue;
 
 	targetText = targetText.replace(/Share/gi, "Cher");
@@ -69,28 +67,32 @@ function handleText(textNode)
 	textNode.nodeValue = targetText;
 }
 
-function createAudioElement(path) 
-{
+function createAudioElement(path) {
+
 	const audioElement = document.createElement('audio');
+
 	path = chrome.runtime.getURL('/assets/media/do-you-believe-in-love.wav');
 	audioElement.setAttribute('src', path);
 	audioElement.setAttribute('type', 'audio/wav');
 	audioElement.id = 'cher';
-	document.body.appendChild(audioElement);
+
+	return document.body.appendChild(audioElement);
 }
 
-function createConfettiContainerElement()
-{
+function createConfettiContainerElement() {
+
 	const confettiElement = document.createElement('div');
+
 	confettiElement.setAttribute('class', 'cher-confetti');
 	document.body.appendChild(confettiElement);
 
-	createConfettiElements();
+	return createConfettiElements();
 
 }
 
 function createConfettiElements() {
 	const confetti = [...Array(500).keys()];
+
 	return confetti.forEach(function(el) {
     	let div = document.createElement("div");
     	div.className = "confetti-" + el;
@@ -101,6 +103,7 @@ function createConfettiElements() {
 document.body.addEventListener('click', function(e) {
 	let trigger = e.target.innerText;
 	const toggleConfetti = document.querySelector('.cher-confetti');
+
 	if(trigger) {
 		if(trigger.includes('cher',) || trigger.includes('Cher',)) {
 			trigger = true;
