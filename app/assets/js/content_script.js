@@ -2,6 +2,19 @@ walk(document.body);
 createAudioElement();
 createConfettiContainerElement();
 
+//Utilities
+function createElement(tag) {
+	return document.createElement(tag);
+}
+
+function makeQuerySelection(target) {
+	return document.querySelector(target);
+}
+
+function appendToBody(element) {
+	document.body.appendChild(element);
+}
+
 function walk(node) {
 	// I stole this function from here:
 	// http://is.gd/mwZp7E
@@ -69,22 +82,22 @@ function handleText(textNode) {
 
 function createAudioElement(path) {
 
-	const audioElement = document.createElement('audio');
+	const audioElement = createElement('audio');
 
 	path = chrome.runtime.getURL('/assets/media/do-you-believe-in-love.wav');
 	audioElement.setAttribute('src', path);
 	audioElement.setAttribute('type', 'audio/wav');
 	audioElement.id = 'cher';
 
-	return document.body.appendChild(audioElement);
+	return appendToBody(audioElement);
 }
 
 function createConfettiContainerElement() {
 
-	const confettiElement = document.createElement('div');
+	const confettiElement = createElement('div');
 
 	confettiElement.setAttribute('class', 'cher-confetti');
-	document.body.appendChild(confettiElement);
+	appendToBody(confettiElement)
 
 	return createConfettiElements();
 
@@ -94,15 +107,15 @@ function createConfettiElements() {
 	const confetti = [...Array(500).keys()];
 
 	return confetti.forEach(function(el) {
-    	let div = document.createElement("div");
-    	div.className = "confetti-" + el;
-    	document.querySelector('.cher-confetti').appendChild(div);
+    	let div = createElement('div');
+		div.className = "confetti-" + el;
+		makeQuerySelection('.cher-confetti').appendChild(div);
 	});
 }
 
 document.body.addEventListener('click', function(e) {
 	let trigger = e.target.innerText;
-	const toggleConfetti = document.querySelector('.cher-confetti');
+	const toggleConfetti = makeQuerySelection('.cher-confetti');
 
 	if(trigger) {
 		if(trigger.includes('cher',) || trigger.includes('Cher',)) {
